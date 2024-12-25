@@ -1,14 +1,21 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
+  <a-config-provider :getPopupContainer="getPopupContainer">
+    <router-view></router-view>
+  </a-config-provider>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
-
 export default {
   name: "App",
-  components: {
-    HelloWorld,
+  components: {},
+  methods: {
+    getPopupContainer(el, dialogContext) {
+      if (dialogContext) {
+        return dialogContext.getDialogWrap();
+      } else {
+        return document.body;
+      }
+    },
   },
 };
 </script>
